@@ -7,7 +7,7 @@ using SigFigs.SigFigs;
 
 namespace SigFigs
 {
-    class Program
+    class SFDebugs
     {
         static void Main(string[] args)
         {
@@ -32,6 +32,17 @@ namespace SigFigs
             Console.WriteLine("\nBase Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
             x = x + x;
+            Console.WriteLine("Num after addition: " + x.ToString());
+            Console.WriteLine("Num after addition: " + x.ToString(true));
+
+            //Test 4
+            x = int.MaxValue;
+            SigFig neg = int.MinValue;
+            Console.WriteLine("\nBase Num: " + x.ToString());
+            Console.WriteLine("Base Num: " + x.ToString(true));
+            Console.WriteLine("Base Negative Num: " + neg.ToString());
+            Console.WriteLine("Base Negative Num: " + neg.ToString(true));
+            x = x + neg;
             Console.WriteLine("Num after addition: " + x.ToString());
             Console.WriteLine("Num after addition: " + x.ToString(true));
 
