@@ -107,9 +107,9 @@ namespace SigFigs.SigFigs
         }
 
         /// <summary>
-        /// Adds the specified second.
+        /// Adds the specified value.
         /// </summary>
-        /// <param name="second">The second.</param>
+        /// <param name="second">The value to be added.</param>
         /// <returns></returns>
         public SigFig Add(SigFig second)
         {
@@ -211,6 +211,11 @@ namespace SigFigs.SigFigs
             return first;
         }
 
+        public override string ToString()
+        {
+            return (getSigFigs(3) + "e" + trailingZeroes);
+        }
+
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
@@ -235,13 +240,9 @@ namespace SigFigs.SigFigs
         /// </summary>
         /// <param name="numberOfFigs">The number of figures to return.</param>
         /// <returns></returns>
-        //int getSigFigs(int numberOfFigs)
-        //{
-        //    if(numberOfFigs >= 9)
-        //    {
-        //        return sigFigs;
-        //    }
-
-        //}
+        int getSigFigs(int numberOfFigs)
+        {
+            return (sigFigs * 10 ^ (9 - numberOfFigs));
+        }
     }
 }
