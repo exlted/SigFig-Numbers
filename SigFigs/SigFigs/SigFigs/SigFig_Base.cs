@@ -353,9 +353,7 @@ namespace SigFigs.SigFigs
         public static bool operator >(SigFig first, SigFig second)
         {
             if (first.trailingZeroes > second.trailingZeroes)
-            {
                 return true;
-            }
             else if (first.trailingZeroes == second.trailingZeroes && first.sigFigs > second.sigFigs)
                 return true;
             else return false;
@@ -374,9 +372,9 @@ namespace SigFigs.SigFigs
         {
             if (first.sigFigs == second.sigFigs && first.trailingZeroes == second.trailingZeroes)
                 return true;
-            else if (second.trailingZeroes > first.trailingZeroes)
+            else if (first.trailingZeroes > second.trailingZeroes)
                 return true;
-            else if (second.trailingZeroes == first.trailingZeroes && second.sigFigs > first.sigFigs)
+            else if (first.trailingZeroes == second.trailingZeroes && first.sigFigs > second.sigFigs)
                 return true;
             else return false;
         }
