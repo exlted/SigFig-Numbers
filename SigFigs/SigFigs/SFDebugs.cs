@@ -58,6 +58,53 @@ namespace SigFigs
             Console.WriteLine("Num after --: " + x.ToString(true));
             Console.WriteLine("ToString(int) test " + x.ToString(5));
 
+            //Test 6: %
+            x = 14;
+            Console.WriteLine("\nBase Num: " + x.ToString());
+            Console.WriteLine("Base Num: " + x.ToString(true));
+            x = x % 3;
+            Console.WriteLine("Num after remainder: " + x.ToString());
+            Console.WriteLine("Num after remainder: " + x.ToString(true));
+            x = long.MaxValue;
+            Console.WriteLine("long Base Num: " + x.ToString());
+            Console.WriteLine("long Base Num: " + x.ToString(true));
+            x = x % 2;
+            Console.WriteLine("long Num after remainder: " + x.ToString());
+            Console.WriteLine("long Num after remainder: " + x.ToString(true));
+
+            //Test 7: == !=
+            x = 500;
+            neg = 501;
+            Console.WriteLine("\nBase Num: " + x.ToString());
+            Console.WriteLine("Base Num: " + x.ToString(true));
+            if(x == neg)
+                Console.WriteLine("Yay!");
+            if (x != neg)
+                Console.WriteLine("Nay!");
+            neg--;
+            if (x == neg)
+                Console.WriteLine("Yay!");
+            if (x != neg)
+                Console.WriteLine("Nay!");
+
+            //Test: > < <= >=
+            x = 501;
+            neg = 500;
+            Console.WriteLine("\nBase Num x: " + x.ToString());
+            Console.WriteLine("Base Num neg: " + neg.ToString());
+            if (x > neg)
+                Console.WriteLine("> yes");
+            else Console.WriteLine("> no");
+            if (x < neg)
+                Console.WriteLine("< yes");
+            else Console.WriteLine("< no");
+            if (x <= neg)
+                Console.WriteLine("<= yes");
+            else Console.WriteLine("<= no");
+            if (x >= neg)
+                Console.WriteLine(">= yes");
+            else Console.WriteLine(">= no");
+
             //Final loop Test
             x = 2;
             int p1 = Console.CursorLeft;
