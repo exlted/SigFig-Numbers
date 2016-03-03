@@ -111,10 +111,23 @@ namespace SigFigs.SigFigs
             return new SigFig(value);
         }
 
-        //public static implicit operator short(SigFig value)
-        //{
-        //    if()
-        //}
+        public static implicit operator short(SigFig value)
+        {
+            string temp = value.ToString(true);
+            return Convert.ToInt16(temp.Substring(temp.Length - 5));
+        }
+
+        public static implicit operator int(SigFig value)
+        {
+            string temp = value.ToString(true);
+            return Convert.ToInt32(temp.Substring(temp.Length - 10));
+        }
+
+        public static implicit operator long(SigFig value)
+        {
+            string temp = value.ToString(true);
+            return Convert.ToInt64(temp.Substring(temp.Length - 18));
+        }
 
         /// <summary>
         /// Adds the specified value.
