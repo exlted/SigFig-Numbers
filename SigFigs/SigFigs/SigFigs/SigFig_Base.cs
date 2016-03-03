@@ -242,7 +242,7 @@ namespace SigFigs.SigFigs
         /// <returns></returns>
         int getSigFigs(int numberOfFigs)
         {
-            return (sigFigs * 10 ^ (9 - numberOfFigs));
+            return (sigFigs / 10 ^ (9 - numberOfFigs));
         }
     }
 }
