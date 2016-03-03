@@ -106,6 +106,11 @@ namespace SigFigs.SigFigs
             return new SigFig(value);
         }
 
+        //public static implicit operator short(SigFig value)
+        //{
+        //    if()
+        //}
+
         /// <summary>
         /// Adds the specified value.
         /// </summary>
