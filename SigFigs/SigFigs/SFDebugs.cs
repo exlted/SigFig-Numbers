@@ -11,7 +11,7 @@ namespace SigFigs
     {
         static void Main(string[] args)
         {
-            //Test 1
+            //Test 1: addition
             SigFig x = int.MaxValue;
             Console.WriteLine("Base Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
@@ -19,7 +19,7 @@ namespace SigFigs
             Console.WriteLine("Num after addition: " + x.ToString());
             Console.WriteLine("Num after addition: " + x.ToString(true));
 
-            //Test 2
+            //Test 2: short
             x = short.MaxValue;
             Console.WriteLine("\nBase Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
@@ -27,7 +27,7 @@ namespace SigFigs
             Console.WriteLine("Num after addition: " + x.ToString());
             Console.WriteLine("Num after addition: " + x.ToString(true));
 
-            //Test 3
+            //Test 3: long
             x = new SigFig( long.MaxValue);
             Console.WriteLine("\nBase Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
@@ -35,7 +35,7 @@ namespace SigFigs
             Console.WriteLine("Num after addition: " + x.ToString());
             Console.WriteLine("Num after addition: " + x.ToString(true));
 
-            //Test 4
+            //Test 4: adding negatives
             x = int.MaxValue;
             SigFig neg = int.MinValue;
             Console.WriteLine("\nBase Num: " + x.ToString());
@@ -46,9 +46,30 @@ namespace SigFigs
             Console.WriteLine("Num after addition: " + x.ToString());
             Console.WriteLine("Num after addition: " + x.ToString(true));
 
-            Console.SetCursorPosition(0, Console.WindowHeight - 1);
-            Console.Write("Press ENTER to continue...");
-            Console.Read();
+            //Test 5:
+            x = 999999998;
+            Console.WriteLine("\nBase Num: " + x.ToString());
+            Console.WriteLine("Base Num: " + x.ToString(true));
+            x++;
+            Console.WriteLine("Num after ++: " + x.ToString());
+            Console.WriteLine("Num after ++: " + x.ToString(true));
+            x--;
+            Console.WriteLine("Num after --: " + x.ToString());
+            Console.WriteLine("Num after --: " + x.ToString(true));
+            Console.WriteLine("ToString(int) test " + x.ToString(5));
+
+            //Final loop Test
+            x = 2;
+            int p1 = Console.CursorLeft;
+            int p2 = Console.CursorTop;
+            while(true)
+            {
+                Console.SetCursorPosition(p1, p2);
+                Console.WriteLine("\nIncremented number: " + x + "                                         ");
+                x += (x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x);
+                Console.Write("Press ENTER to continue...");
+                Console.Read();
+            }
         }
     }
 }

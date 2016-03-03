@@ -394,7 +394,8 @@ namespace SigFigs.SigFigs
         /// </returns>
         public string ToString(int numberOfFigs)
         {
-            return (getSigFigs(numberOfFigs) + 'e' + (trailingZeroes + (9 - numberOfFigs)).ToString());
+            string temp = (getSigFigs(numberOfFigs).ToString() + "e" + (trailingZeroes + (9 - numberOfFigs)).ToString());
+            return temp;
         }
 
         /// <summary>
