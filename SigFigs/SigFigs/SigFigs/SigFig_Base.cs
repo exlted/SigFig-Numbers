@@ -288,7 +288,7 @@ namespace SigFigs.SigFigs
         /// </summary>
         /// <param name="amount">The amount to be incremented.</param>
         /// <returns></returns>
-        public SigFig increment(int amount = 1)
+        public SigFig Increment(int amount = 1)
         {
             sigFigs += amount;
             return this;
@@ -311,7 +311,7 @@ namespace SigFigs.SigFigs
         /// </summary>
         /// <param name="amount">The amount to decrement.</param>
         /// <returns></returns>
-        public SigFig decrement(int amount = 1)
+        public SigFig Decrement(int amount = 1)
         {
             sigFigs -= amount;
             return this;
@@ -345,7 +345,7 @@ namespace SigFigs.SigFigs
 
         public static bool operator !=(SigFig first, SigFig second)
         {
-            if (first.sigFigs != second.sigFigs && first.trailingZeroes != second.trailingZeroes)
+            if (first.sigFigs != second.sigFigs || first.trailingZeroes != second.trailingZeroes)
                 return true;
             else return false;
         }
