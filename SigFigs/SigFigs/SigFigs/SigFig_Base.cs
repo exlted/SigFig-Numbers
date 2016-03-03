@@ -283,6 +283,17 @@ namespace SigFigs.SigFigs
             return first;
         }
 
+        /// <summary>
+        /// Increments the specified amount to the end of the significant digits.
+        /// </summary>
+        /// <param name="amount">The amount to be incremented.</param>
+        /// <returns></returns>
+        public SigFig increment(int amount = 1)
+        {
+            sigFigs += amount;
+            return this;
+        }
+
         public static SigFig operator ++(SigFig first)
         {
             if (first.trailingZeroes > 0)
@@ -294,6 +305,17 @@ namespace SigFigs.SigFigs
             }
         }
         #endregion
+
+        /// <summary>
+        /// Decrements the specified amount from the end of the SigFig.
+        /// </summary>
+        /// <param name="amount">The amount to decrement.</param>
+        /// <returns></returns>
+        public SigFig decrement(int amount = 1)
+        {
+            sigFigs -= amount;
+            return this;
+        }
 
         public static SigFig operator --(SigFig first)
         {
@@ -394,8 +416,7 @@ namespace SigFigs.SigFigs
         /// </returns>
         public string ToString(int numberOfFigs)
         {
-            string temp = (getSigFigs(numberOfFigs).ToString() + "e" + (trailingZeroes + (9 - numberOfFigs)).ToString());
-            return temp;
+            return (getSigFigs(numberOfFigs).ToString() + "e" + (trailingZeroes + (9 - numberOfFigs)).ToString());
         }
 
         /// <summary>
