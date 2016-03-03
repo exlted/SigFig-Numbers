@@ -17,12 +17,20 @@ namespace SigFigs.SigFigs
         /// </summary>
         short trailingZeroes;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SigFig"/> class.
+        /// </summary>
+        /// <param name="value">The value to be put into the SigFig.</param>
         public SigFig(short value)
         {
             sigFigs = value;
             trailingZeroes = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SigFig"/> class.
+        /// </summary>
+        /// <param name="value">The value to be put into the SigFig.</param>
         public SigFig(int value)
         {
             if (value < 999999999 && value > -999999999)
@@ -37,6 +45,10 @@ namespace SigFigs.SigFigs
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SigFig"/> class.
+        /// </summary>
+        /// <param name="value">The value to be put into the SigFig.</param>
         public SigFig(long value)
         {
             if(value < 999999999 && value > -999999999)
@@ -111,16 +123,49 @@ namespace SigFigs.SigFigs
             return new SigFig(value);
         }
 
+        /// <summary>
+        /// Converts the SigFig into a short, returning 0 if there is no values stored within the scope of the short.
+        /// </summary>
+        /// <param name="value">The value that will be made into a short.</param>
+        /// <returns></returns>
+        public short toShort(SigFig value)
+        {
+            string temp = value.ToString(true);
+            return Convert.ToInt16(temp.Substring(temp.Length - 5));
+        }
+
         public static implicit operator short(SigFig value)
         {
             string temp = value.ToString(true);
             return Convert.ToInt16(temp.Substring(temp.Length - 5));
         }
 
+        /// <summary>
+        /// Converts the SigFig into an int, returning 0 if there is no value stored within the scope of the int.
+        /// </summary>
+        /// <param name="value">The value that will be made into an int.</param>
+        /// <returns></returns>
+        public int toInt(SigFig value)
+        {
+            string temp = value.ToString(true);
+            return Convert.ToInt32(temp.Substring(temp.Length - 10));
+        }
+
         public static implicit operator int(SigFig value)
         {
             string temp = value.ToString(true);
             return Convert.ToInt32(temp.Substring(temp.Length - 10));
+        }
+
+        /// <summary>
+        /// Converts the SigFig into a long, returning 0 if there is no value stored within the scope of the long.
+        /// </summary>
+        /// <param name="value">The value that will be made into a long.</param>
+        /// <returns></returns>
+        public long toLong(SigFig value)
+        {
+            string temp = value.ToString(true);
+            return Convert.ToInt64(temp.Substring(temp.Length - 18));
         }
 
         public static implicit operator long(SigFig value)
@@ -234,6 +279,35 @@ namespace SigFigs.SigFigs
             return first;
         }
 
+        public static SigFig operator ++(SigFig first)
+        {
+            if (first.trailingZeroes > 0)
+                return first;
+            else
+            {
+                first.sigFigs++;
+                return first;
+            }
+        }
+
+        public static SigFig operator --(SigFig first)
+        {
+            if (first.trailingZeroes > 0)
+                return first;
+            else
+            {
+                first.sigFigs--;
+                return first;
+            }
+        }
+
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance always holding the 3 most significant digits with e_ after it showing the amount of trailing zeroes.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             if (sigFigs < 99999 && sigFigs > -99999)
@@ -241,6 +315,13 @@ namespace SigFigs.SigFigs
             return (getSigFigs(3) + "e" + (trailingZeroes + 6));
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance always holding the most significant digits that you define with e_ after it showing the amount of trailing zeroes.
+        /// </summary>
+        /// <param name="numberOfFigs">The number of digits to be shown.</param>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public string ToString(int numberOfFigs)
         {
             return (getSigFigs(numberOfFigs) + 'e' + (trailingZeroes + (9 - numberOfFigs)).ToString());
