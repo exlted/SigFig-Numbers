@@ -28,7 +28,7 @@ namespace SigFigs
             Console.WriteLine("Num after addition: " + x.ToString(true));
 
             //Test 3
-            x = long.MaxValue;
+            x = new SigFig( long.MaxValue);
             Console.WriteLine("\nBase Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
             x = x + x;

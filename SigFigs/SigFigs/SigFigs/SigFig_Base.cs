@@ -89,6 +89,11 @@ namespace SigFigs.SigFigs
                 sigFigs = (int)(value / 1000000000);
                 trailingZeroes = 9;
             }
+            else
+            {
+                sigFigs = (int)(value / 10000000000);
+                trailingZeroes = 10;
+            }
         }
 
         public static implicit operator SigFig (short value)
