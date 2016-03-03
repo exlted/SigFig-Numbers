@@ -301,6 +301,62 @@ namespace SigFigs.SigFigs
             }
         }
 
+        public static bool operator ==(SigFig first, SigFig second)
+        {
+            if (first.sigFigs == second.sigFigs && first.trailingZeroes == second.trailingZeroes)
+                return true;
+            else return false;
+
+        }
+
+        public static bool operator !=(SigFig first, SigFig second)
+        {
+            if (first.sigFigs != second.sigFigs && first.trailingZeroes != second.trailingZeroes)
+                return true;
+            else return false;
+        }
+
+        public static bool operator >(SigFig first, SigFig second)
+        {
+            if (first.trailingZeroes > second.trailingZeroes)
+            {
+                return true;
+            }
+            else if (first.trailingZeroes == second.trailingZeroes && first.sigFigs > second.sigFigs)
+                return true;
+            else return false;
+        }
+
+        public static bool operator <(SigFig first, SigFig second)
+        {
+            if (second.trailingZeroes > first.trailingZeroes)
+                return true;
+            else if (second.trailingZeroes == first.trailingZeroes && second.sigFigs > first.sigFigs)
+                return true;
+            else return false;
+        }
+
+        public static bool operator >=(SigFig first, SigFig second)
+        {
+            if (first.sigFigs == second.sigFigs && first.trailingZeroes == second.trailingZeroes)
+                return true;
+            else if (second.trailingZeroes > first.trailingZeroes)
+                return true;
+            else if (second.trailingZeroes == first.trailingZeroes && second.sigFigs > first.sigFigs)
+                return true;
+            else return false;
+        }
+
+        public static bool operator <=(SigFig first, SigFig second)
+        {
+            if (first.sigFigs == second.sigFigs && first.trailingZeroes == second.trailingZeroes)
+                return true;
+            else if (second.trailingZeroes > first.trailingZeroes)
+                return true;
+            else if (second.trailingZeroes == first.trailingZeroes && second.sigFigs > first.sigFigs)
+                return true;
+            else return false;
+        }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance always holding the 3 most significant digits with e_ after it showing the amount of trailing zeroes.
