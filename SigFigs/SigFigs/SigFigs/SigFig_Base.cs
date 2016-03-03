@@ -213,7 +213,14 @@ namespace SigFigs.SigFigs
 
         public override string ToString()
         {
-            return (getSigFigs(3) + "e" + trailingZeroes);
+            if (sigFigs < 99999 && sigFigs > -99999)
+                return sigFigs.ToString();
+            return (getSigFigs(3) + "e" + (trailingZeroes + 6));
+        }
+
+        public string ToString(int numberOfFigs)
+        {
+            return (getSigFigs(numberOfFigs) + 'e' + (trailingZeroes + (9 - numberOfFigs)).ToString());
         }
 
         /// <summary>
@@ -242,7 +249,15 @@ namespace SigFigs.SigFigs
         /// <returns></returns>
         int getSigFigs(int numberOfFigs)
         {
-            return (sigFigs / 10 ^ (9 - numberOfFigs));
+            if (numberOfFigs >= 9)
+                return sigFigs;
+            string s = sigFigs.ToString();
+            string s2 = "";
+            for (int i = 0; i < numberOfFigs; i++)
+            {
+                s2 += s[i];
+            }
+            return Convert.ToInt32(s2);
         }
     }
 }
