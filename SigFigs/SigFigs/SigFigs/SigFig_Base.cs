@@ -17,6 +17,7 @@ namespace SigFigs.SigFigs
         /// </summary>
         short trailingZeroes;
 
+        #region Conversions and Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="SigFig"/> class.
         /// </summary>
@@ -173,7 +174,10 @@ namespace SigFigs.SigFigs
             string temp = value.ToString(true);
             return Convert.ToInt64(temp.Substring(temp.Length - 18));
         }
+        #endregion
 
+        #region Math Operations
+        #region Addition Operations
         /// <summary>
         /// Adds the specified value.
         /// </summary>
@@ -289,6 +293,7 @@ namespace SigFigs.SigFigs
                 return first;
             }
         }
+        #endregion
 
         public static SigFig operator --(SigFig first)
         {
@@ -301,6 +306,13 @@ namespace SigFigs.SigFigs
             }
         }
 
+        public static SigFig operator %(SigFig first, int second)
+        {
+            return first.sigFigs % second;
+        }
+        #endregion
+
+        #region Logical Operations
         public static bool operator ==(SigFig first, SigFig second)
         {
             if (first.sigFigs == second.sigFigs && first.trailingZeroes == second.trailingZeroes)
@@ -357,7 +369,9 @@ namespace SigFigs.SigFigs
                 return true;
             else return false;
         }
+        #endregion
 
+        #region Object Overloads
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance always holding the 3 most significant digits with e_ after it showing the amount of trailing zeroes.
         /// </summary>
@@ -401,6 +415,25 @@ namespace SigFigs.SigFigs
             }
             return temp.ToString();
         }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance SHOULD ONLY BE OF TYPE SIGFIG AS OF THIS TIME.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+
+        public override bool Equals(object obj)
+        {
+            return this == obj as SigFig;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        #endregion
 
         /// <summary>
         /// Gets the value of a number up to the number of specified significant figures.
