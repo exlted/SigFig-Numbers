@@ -8,6 +8,7 @@ namespace SigFigs.SigFigs
 {
     class SigFig
     {
+        #region NumberStorage
         /// <summary>
         /// The significant figures
         /// </summary>
@@ -16,6 +17,7 @@ namespace SigFigs.SigFigs
         /// The trailing zeroes
         /// </summary>
         short trailingZeroes;
+        #endregion
 
         #region Conversions and Constructors
         /// <summary>
@@ -177,7 +179,7 @@ namespace SigFigs.SigFigs
         #endregion
 
         #region Math Operations
-        #region Addition Operations
+        #region Additive Operations
         /// <summary>
         /// Adds the specified value.
         /// </summary>
@@ -305,7 +307,7 @@ namespace SigFigs.SigFigs
             }
         }
         #endregion
-
+        #region Subtractive Operations
         /// <summary>
         /// Decrements the specified amount from the end of the SigFig.
         /// </summary>
@@ -327,11 +329,15 @@ namespace SigFigs.SigFigs
                 return first;
             }
         }
-
+        #endregion
+        #region Multiplicative Operations
+        #endregion
+        #region Dividitive Operations
         public static SigFig operator %(SigFig first, int second)
         {
             return first.sigFigs % second;
         }
+        #endregion
         #endregion
 
         #region Logical Operations
@@ -455,6 +461,7 @@ namespace SigFigs.SigFigs
         }
         #endregion
 
+        #region Private Functions
         /// <summary>
         /// Gets the value of a number up to the number of specified significant figures.
         /// </summary>
@@ -472,5 +479,6 @@ namespace SigFigs.SigFigs
             }
             return Convert.ToInt32(s2);
         }
+        #endregion
     }
 }
