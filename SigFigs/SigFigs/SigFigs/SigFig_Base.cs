@@ -329,6 +329,59 @@ namespace SigFigs.SigFigs
                 return first;
             }
         }
+
+        public static SigFig operator -(SigFig first, SigFig second)
+        {
+            long temp = 0;
+            if (first.trailingZeroes > second.trailingZeroes)
+            {
+                if ((first.trailingZeroes -= second.trailingZeroes) > 9)
+                    return first;
+                temp = first.sigFigs - (second.sigFigs / 10 ^ (first.trailingZeroes - second.trailingZeroes));
+                if (temp < 100000000 || temp > -100000000)
+                {
+                    first.sigFigs = (int)temp * 10;
+                    first.trailingZeroes -= 1;
+                }
+                else
+                {
+                    first.sigFigs = (int)temp;
+                }
+            }
+            else if (second.trailingZeroes > first.trailingZeroes)
+            {
+                if ((second.trailingZeroes -= first.trailingZeroes) > 9)
+                {
+                    second.sigFigs = 0 - second.sigFigs;
+                    return second;
+                }
+                temp = first.sigFigs - (second.sigFigs / 10 ^ (second.trailingZeroes - first.trailingZeroes));
+                if (temp < 100000000 || temp > -100000000)
+                {
+                    first.sigFigs = (int)temp * 10;
+                    first.trailingZeroes = second.trailingZeroes--;
+                }
+                else
+                {
+                    first.sigFigs = (int)temp;
+                    first.trailingZeroes = second.trailingZeroes;
+                }
+            }
+            else
+            {
+                temp = first.sigFigs - second.sigFigs;
+                if (temp > 100000000 || temp < -100000000)
+                {
+                    first.sigFigs = (int)temp * 10;
+                    first.trailingZeroes -= 1;
+                }
+                else
+                {
+                    first.sigFigs = (int)temp;
+                }
+            }
+            return first;
+        }
         #endregion
         #region Multiplicative Operations
         #endregion

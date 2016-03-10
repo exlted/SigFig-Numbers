@@ -105,8 +105,18 @@ namespace SigFigs
                 Console.WriteLine(">= yes");
             else Console.WriteLine(">= no");
 
+            //Test: -
+            x = int.MaxValue;
+            x += x + x + x + x + x + x;
+            Console.WriteLine("\nBase Num: " + x.ToString());
+            Console.WriteLine("Base Num: " + x.ToString(true));
+            x = x - 1000000000;
+            Console.WriteLine("Num after subtraction: " + x.ToString());
+            Console.WriteLine("Num after subtraction: " + x.ToString(true));
+
             //Final loop Test
             x = 2;
+            neg = 2;
             int p1 = Console.CursorLeft;
             int p2 = Console.CursorTop;
             while(true)
@@ -114,6 +124,8 @@ namespace SigFigs
                 Console.SetCursorPosition(p1, p2);
                 Console.WriteLine("\nIncremented number: " + x + "                                         ");
                 x += (x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x + x);
+                Console.WriteLine("Decremented number: " + neg + "                                         ");
+                neg = neg - 10000;
                 Console.Write("Press ENTER to continue...");
                 Console.Read();
             }
