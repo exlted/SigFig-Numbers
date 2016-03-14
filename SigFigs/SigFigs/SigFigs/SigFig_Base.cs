@@ -332,7 +332,23 @@ namespace SigFigs.SigFigs
         #endregion
         #region Multiplicative Operations
         #endregion
-        #region Dividitive Operations
+        #region Divisive Operations
+        public static SigFig operator / (SigFig first, SigFig second)
+        {
+            short i = 0;
+            float temp = first.sigFigs / second.sigFigs;
+            first.trailingZeroes -= second.trailingZeroes;
+            while(true)
+            {
+                if (temp > 1)
+                    break;
+                temp *= 10;
+                i++;
+            }
+            first.trailingZeroes -= i;
+            return first;
+        }
+
         public static SigFig operator %(SigFig first, int second)
         {
             return first.sigFigs % second;
