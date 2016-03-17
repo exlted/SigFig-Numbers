@@ -10,7 +10,7 @@ namespace SigFigs.SigFigs
     {
         #region NumberStorage
         /// <summary>
-        /// The significant figures
+        /// The significant figures, holds up to "999,999,999"
         /// </summary>
         int sigFigs;
         /// <summary>
@@ -28,6 +28,11 @@ namespace SigFigs.SigFigs
         {
             sigFigs = value;
             trailingZeroes = 0;
+            while(sigFigs<100000000)
+            {
+                sigFigs *= 10;
+                trailingZeroes--;
+            }
         }
 
         /// <summary>
@@ -40,6 +45,11 @@ namespace SigFigs.SigFigs
             {
                 sigFigs = value;
                 trailingZeroes = 0;
+                while (sigFigs < 100000000)
+                {
+                    sigFigs *= 10;
+                    trailingZeroes--;
+                }
             }
             else
             {
@@ -58,6 +68,11 @@ namespace SigFigs.SigFigs
             {
                 sigFigs = (int)value;
                 trailingZeroes = 0;
+                while (sigFigs < 100000000)
+                {
+                    sigFigs *= 10;
+                    trailingZeroes--;
+                }
             }
             else if(value < 9999999999 && value > -9999999999)
             {
@@ -137,7 +152,7 @@ namespace SigFigs.SigFigs
             return Convert.ToInt16(temp.Substring(temp.Length - 5));
         }
 
-        public static implicit operator short(SigFig value)
+        public static explicit operator short(SigFig value)
         {
             string temp = value.ToString(true);
             return Convert.ToInt16(temp.Substring(temp.Length - 5));
@@ -154,7 +169,7 @@ namespace SigFigs.SigFigs
             return Convert.ToInt32(temp.Substring(temp.Length - 10));
         }
 
-        public static implicit operator int(SigFig value)
+        public static explicit operator int(SigFig value)
         {
             string temp = value.ToString(true);
             return Convert.ToInt32(temp.Substring(temp.Length - 10));
@@ -171,7 +186,7 @@ namespace SigFigs.SigFigs
             return Convert.ToInt64(temp.Substring(temp.Length - 18));
         }
 
-        public static implicit operator long(SigFig value)
+        public static explicit operator long(SigFig value)
         {
             string temp = value.ToString(true);
             return Convert.ToInt64(temp.Substring(temp.Length - 18));
@@ -503,10 +518,21 @@ namespace SigFigs.SigFigs
         {
             StringBuilder temp = new StringBuilder();
 
-            temp.Append(sigFigs);
-            for (int i = 0; i < trailingZeroes; i++)
+            if(trailingZeroes>=0)
             {
-                temp.Append(0);
+                temp.Append(sigFigs);
+                for (int i = 0; i < trailingZeroes; i++)
+                {
+                    temp.Append(0);
+                }
+            }
+            else
+            {
+                temp.Append("0.");
+                for(int i =0; i > trailingZeroes; i--)
+                {
+                    temp.Append(0);
+                }
             }
             return temp.ToString();
         }
@@ -518,7 +544,6 @@ namespace SigFigs.SigFigs
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-
         public override bool Equals(object obj)
         {
             return this == obj as SigFig;
