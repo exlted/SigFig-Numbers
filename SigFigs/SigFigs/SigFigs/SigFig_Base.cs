@@ -401,6 +401,23 @@ namespace SigFigs.SigFigs
         #region Multiplicative Operations
         #endregion
         #region Divisive Operations
+        public SigFig Divide(SigFig second)
+        {
+            short i = 0;
+            float temp = this.sigFigs / second.sigFigs;
+            this.trailingZeroes -= second.trailingZeroes;
+            while (true)
+            {
+                if (temp >= 1)
+                    break;
+                temp *= 10;
+                i++;
+            }
+            this.trailingZeroes -= i;
+            this.sigFigs = (int)temp;
+            return this;
+        }
+
         public static SigFig operator / (SigFig first, SigFig second)
         {
             short i = 0;
@@ -414,6 +431,7 @@ namespace SigFigs.SigFigs
                 i++;
             }
             first.trailingZeroes -= i;
+            first.sigFigs = (int)temp;
             return first;
         }
 
@@ -508,7 +526,7 @@ namespace SigFigs.SigFigs
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="System.String" /> that represents this instance that is fully written out.
         /// </summary>
         /// <param name="isFullNumber">if set to <c>true</c> displays number fully written out.</param>
         /// <returns>

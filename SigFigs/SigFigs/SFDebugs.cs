@@ -1,4 +1,7 @@
-﻿using System;
+﻿//#define additionTests
+#define divisionTests
+//#define logicTests
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +14,10 @@ namespace SigFigs
     {
         static void Main(string[] args)
         {
+            SigFig x, neg;
+#if additionTests
             //Test 1: addition
-            SigFig x = int.MaxValue;
+            x = int.MaxValue;
             Console.WriteLine("Base Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
             x = x + x;
@@ -37,7 +42,7 @@ namespace SigFigs
 
             //Test 4: adding negatives
             x = int.MaxValue;
-            SigFig neg = int.MinValue;
+            neg = int.MinValue;
             Console.WriteLine("\nBase Num: " + x.ToString());
             Console.WriteLine("Base Num: " + x.ToString(true));
             Console.WriteLine("Base Negative Num: " + neg.ToString());
@@ -57,7 +62,8 @@ namespace SigFigs
             Console.WriteLine("Num after --: " + x.ToString());
             Console.WriteLine("Num after --: " + x.ToString(true));
             Console.WriteLine("ToString(int) test " + x.ToString(5));
-
+#endif
+#if divisionTests
             //Test 6: %
             x = 14;
             Console.WriteLine("\nBase Num: " + x.ToString());
@@ -72,6 +78,16 @@ namespace SigFigs
             Console.WriteLine("long Num after remainder: " + x.ToString());
             Console.WriteLine("long Num after remainder: " + x.ToString(true));
 
+            //Test: /
+            x = int.MaxValue;
+            x += (x + x + x + x + x);
+            Console.WriteLine("\nBase Num: " + x.ToString());
+            Console.WriteLine("Base Num: " + x.ToString(true));
+            x.Divide(x);
+            Console.WriteLine("Num after division: " + x.ToString());
+            Console.WriteLine("Num after division: " + x.ToString(true));
+#endif
+#if logicTests
             //Test 7: == !=
             x = 500;
             neg = 501;
@@ -104,7 +120,7 @@ namespace SigFigs
             if (x >= neg)
                 Console.WriteLine(">= yes");
             else Console.WriteLine(">= no");
-
+#endif
             //Test: -
             x = int.MaxValue;
             x += x + x + x + x + x + x;
